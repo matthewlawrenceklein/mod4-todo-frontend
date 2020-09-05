@@ -16,6 +16,19 @@ class App extends Component {
     redCards : []
   }
 
+  getCards = () => {
+    fetch(`http://localhost:4000/users/1`)
+      .then(resp => resp.json())
+      .then(userData => {
+        console.log(userData.todos)})
+   }
+
+   componentDidMount(){
+     this.getCards()
+   }
+
+
+
   handleLogOut = () => {
     this.setState({
       loggedIn : false 
