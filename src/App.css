@@ -2,37 +2,43 @@
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.green {
+  background-color: aquamarine;
+  height: 300px;
+  text-align: center;
+
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.yellow {
+  background-color: lightgoldenrodyellow;
+  height: 300px;
+  text-align: center;
+
+
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.red {
+  background-color: lightpink;
+  height: 300px;
+  text-align: center;
 }
 
-.App-link {
-  color: #61dafb;
+.toDoForm {
+  text-align: center;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.toDoCard {
+  text-align: center;
+  margin: 20px;
+  height: 150px;
+  width: 150px ;
+  background-color: ivory;
+}
+
+.navBar {
+  text-align: center;
+}
+
+.login {
+  text-align: center;
 }

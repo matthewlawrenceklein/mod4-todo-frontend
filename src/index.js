@@ -5,6 +5,7 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
+  //will wrap these in provider and router 
   <React.StrictMode>
     <App />
   </React.StrictMode>,

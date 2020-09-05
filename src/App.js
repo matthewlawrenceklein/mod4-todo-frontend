@@ -1,26 +1,52 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { Component } from 'react';
 import './App.css';
+import ToDoForm from './components/TodoForm'
+import ToDoContainer from './components/TodoContainer'
+import LoginForm from './components/LoginForm'
+import NavBar from './components/NavBar'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+class App extends Component {
+
+  state={
+    loggedIn : true,
+    allCards : [],
+    greenCards : [],
+    yellowCards : [],
+    redCards : []
+  }
+
+  handleLogOut = () => {
+    this.setState({
+      loggedIn : false 
+    })
+  }
+
+  handleLogin = () => {
+    this.setState({
+      loggedIn : true 
+    })
+  }
+
+  render() {
+    return (
+      <div>
+        { this.state.loggedIn ? 
+          <div>
+            < NavBar handleLogOut={this.handleLogOut}/>
+            < ToDoForm/> 
+            < ToDoContainer />
+          </div>
+          :
+          < LoginForm handleLogin={this.handleLogin}/>
+        }
+      </div>
+    );
+  }
 }
 
 export default App;
+
+
+// App has top level ternary that renders login or homepage 
+// logged-in view --- app children of 3x TODO Container (red, yellow, green) AND new TODO form 
