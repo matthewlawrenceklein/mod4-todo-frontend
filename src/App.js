@@ -10,6 +10,7 @@ class App extends Component {
 
   state={
     loggedIn : true,
+    userId : 1, 
     allCards : [],
     greenCards : [],
     yellowCards : [],
@@ -17,10 +18,18 @@ class App extends Component {
   }
 
   getCards = () => {
-    fetch(`http://localhost:4000/users/1`)
+    fetch(`http://localhost:4000/users/${this.state.userId}`)
       .then(resp => resp.json())
       .then(userData => {
-        console.log(userData.todos)})
+        this.setState({
+          allCards : userData.todos, 
+          greenCards :  userData.todos.filter(todo => todo.color === 'green'),
+          yellowCards :  userData.todos.filter(todo => todo.color === 'yellow'),
+          redCards :  userData.todos.filter(todo => todo.color === 'red'),
+        })  
+      
+      
+      })
    }
 
    componentDidMount(){
@@ -41,14 +50,37 @@ class App extends Component {
     })
   }
 
+  handleSubmit = (newTodo) => {
+    
+    const reqObj = {
+      method: 'POST', 
+      headers: {
+        "Content-Type" : "application/json",
+        "Access-Control-Allow-Origin" : "*"
+      },
+      body: JSON.stringify(newTodo)
+    }
+
+    fetch(`http://localhost:4000/todos`, reqObj)
+      .then(resp => resp.json())
+      .then(respData => {
+        this.getCards()
+        })
+   }
+
   render() {
     return (
       <div>
         { this.state.loggedIn ? 
           <div>
             < NavBar handleLogOut={this.handleLogOut}/>
-            < ToDoForm/> 
-            < ToDoContainer />
+            < ToDoForm handleSubmit={this.handleSubmit} user={this.state.userId}/> 
+            < ToDoContainer 
+                allCards={this.state.allCards}
+                greenCards={this.state.greenCards}
+                yellowCards={this.state.yellowCards}
+                redCards={this.state.redCards}
+            />
           </div>
           :
           < LoginForm handleLogin={this.handleLogin}/>

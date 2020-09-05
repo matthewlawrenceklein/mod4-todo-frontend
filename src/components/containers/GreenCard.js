@@ -4,11 +4,19 @@ import ToDoCard from '../ToDoCard'
 
 
 class GreenCard extends Component {
+
+    renderGreen = () => {
+        return this.props.greenCards.map(card => {
+            return <ToDoCard cardData={card}/>
+        })
+    }
+
+
+
     render() {
         return (
             <div className='green'>
-                < ToDoCard />
-                < ToDoCard />
+                { this.renderGreen() }
             </div>
         );
     }
