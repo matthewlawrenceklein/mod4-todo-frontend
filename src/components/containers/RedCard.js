@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
 import '../../App.css';
 import ToDoCard from '../ToDoCard'
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row'
 
 
 class RedCard extends Component {
 
     renderRed = () => {
         return this.props.redCards.map(card => {
-            return <ToDoCard cardData={card}/>
+            return <ToDoCard cardData={card} handleCardMove={ this.props.handleCardMove } title={'immediately'}/>
         })
     }
 
@@ -15,7 +17,11 @@ class RedCard extends Component {
     render() {
         return (
             <div className="red">
-              { this.renderRed() }
+              <Container>
+                    <Row>
+                        { this.renderRed() }
+                    </Row>
+                </Container>
             </div>
         );
     }

@@ -4,22 +4,19 @@
 
 .green {
   background-color: aquamarine;
-  height: 300px;
   text-align: center;
-
+  min-height: 250px;
 }
 
 .yellow {
   background-color: lightgoldenrodyellow;
-  height: 300px;
+  min-height: 250px;
   text-align: center;
-
-
 }
 
 .red {
   background-color: lightpink;
-  height: 300px;
+  min-height: 250px;
   text-align: center;
 }
 

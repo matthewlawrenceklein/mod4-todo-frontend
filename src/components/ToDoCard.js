@@ -3,13 +3,21 @@ import Draggable from 'react-draggable';
 
 class ToDoCard extends Component {
 
-  
+    // eventLogger = (e: MouseEvent, data: Object) => {
+    //     // console.log('Event: ', e);
+    //     console.log('Data: ', data.y);
+    //   };
+
+    checkMovement = (data: Object) => {
+        this.props.handleCardMove(this.props.cardData, data.y)
+
+     }  
 
     render() {
         return (
-            <Draggable>
+            <Draggable onStop={ this.checkMovement  }>
                 <div className='toDoCard'>
-                    <h3>DO THIS</h3>
+                    <h3>{this.props.title}</h3>
                     { this.props.cardData.body } 
 
                     <button> Completed </button>

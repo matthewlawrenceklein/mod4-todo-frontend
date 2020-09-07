@@ -1,19 +1,25 @@
 import React, { Component } from 'react';
 import '../../App.css';
 import ToDoCard from '../ToDoCard'
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row'
 
 class YellowCard extends Component {
 
     renderYellow = () => {
         return this.props.yellowCards.map(card => {
-            return <ToDoCard cardData={card}/>
+            return <ToDoCard cardData={card} handleCardMove={ this.props.handleCardMove } title={'Soon'}/>
         })
     }
 
     render() {
         return (
             <div className='yellow'>
-              { this.renderYellow() }
+              <Container>
+                    <Row>
+                        { this.renderYellow() }
+                    </Row>
+                </Container>
             </div>
         );
     }

@@ -5,7 +5,6 @@ import ToDoContainer from './components/TodoContainer'
 import LoginForm from './components/LoginForm'
 import NavBar from './components/NavBar'
 
-
 class App extends Component {
 
   state={
@@ -26,17 +25,13 @@ class App extends Component {
           greenCards :  userData.todos.filter(todo => todo.color === 'green'),
           yellowCards :  userData.todos.filter(todo => todo.color === 'yellow'),
           redCards :  userData.todos.filter(todo => todo.color === 'red'),
-        })  
-      
-      
+        })   
       })
    }
 
    componentDidMount(){
      this.getCards()
    }
-
-
 
   handleLogOut = () => {
     this.setState({
@@ -68,6 +63,100 @@ class App extends Component {
         })
    }
 
+   handleCardMove = (cardData, yPosition) => {
+     console.log(cardData)
+     console.log(yPosition)
+
+      if ( cardData.color === 'green') {
+            if (yPosition > 400 && yPosition < 750){
+              const reqObj = {
+                method: 'PATCH', 
+                headers: {'Content-Type' : 'application/json'},
+                body: JSON.stringify({color : 'yellow'})
+              }
+
+              fetch(`http://localhost:4000/todos/${cardData.id}`, reqObj)
+                .then(resp => resp.json())
+                .then(respData => {
+                  this.getCards()
+                })
+            } else if (yPosition > 750 && yPosition < 1000){
+              const reqObj = {
+                method: 'PATCH', 
+                headers: {'Content-Type' : 'application/json'},
+                body: JSON.stringify({color : 'red'})
+              }
+
+              fetch(`http://localhost:4000/todos/${cardData.id}`, reqObj)
+              .then(resp => resp.json())
+              .then(respData => {
+                this.getCards()
+              })
+            } else {
+              this.getCards()
+            }
+      } else if (cardData.color === 'yellow'){
+        if (yPosition < 400 && yPosition > 100 ){
+          const reqObj = {
+            method: 'PATCH', 
+            headers: {'Content-Type' : 'application/json'},
+            body: JSON.stringify({color : 'green'})
+          }
+
+          fetch(`http://localhost:4000/todos/${cardData.id}`, reqObj)
+            .then(resp => resp.json())
+            .then(respData => {
+              this.getCards()
+            })
+        } else if (yPosition > 350 && yPosition < 700){
+          const reqObj = {
+            method: 'PATCH', 
+            headers: {'Content-Type' : 'application/json'},
+            body: JSON.stringify({color : 'red'})
+          }
+
+          fetch(`http://localhost:4000/todos/${cardData.id}`, reqObj)
+          .then(resp => resp.json())
+          .then(respData => {
+            this.getCards()
+          })
+        } else {
+          this.getCards()
+        }
+
+
+      } else if (cardData.color === 'red'){
+        if (yPosition > 450 && yPosition < 670 ){
+          const reqObj = {
+            method: 'PATCH', 
+            headers: {'Content-Type' : 'application/json'},
+            body: JSON.stringify({color : 'yellow'})
+          }
+
+          fetch(`http://localhost:4000/todos/${cardData.id}`, reqObj)
+            .then(resp => resp.json())
+            .then(respData => {
+              this.getCards()
+            })
+        } else if (yPosition > 670 && yPosition < 970){
+          const reqObj = {
+            method: 'PATCH', 
+            headers: {'Content-Type' : 'application/json'},
+            body: JSON.stringify({color : 'red'})
+          }
+
+          fetch(`http://localhost:4000/todos/${cardData.id}`, reqObj)
+          .then(resp => resp.json())
+          .then(respData => {
+            this.getCards()
+          })
+        } else {
+          this.getCards()
+        }
+      }
+
+    }
+
   render() {
     return (
       <div>
@@ -76,6 +165,7 @@ class App extends Component {
             < NavBar handleLogOut={this.handleLogOut}/>
             < ToDoForm handleSubmit={this.handleSubmit} user={this.state.userId}/> 
             < ToDoContainer 
+                handleCardMove={this.handleCardMove}
                 allCards={this.state.allCards}
                 greenCards={this.state.greenCards}
                 yellowCards={this.state.yellowCards}
