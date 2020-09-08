@@ -5,6 +5,7 @@ class TodoForm extends Component {
     state={
         body: '',
         color: 'green',
+        completed: false, 
         user_id: this.props.user
     }
 

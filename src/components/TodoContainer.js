@@ -16,17 +16,26 @@ class TodoContainer extends Component {
                 <Container fluid>
                     <Row>
                         <Col>
-                            < GreenCard greenCards={this.props.greenCards} handleCardMove={ this.props.handleCardMove }/>
+                            < GreenCard 
+                                greenCards={this.props.greenCards} 
+                                handleComplete={ this.props.handleComplete }
+                            />
                         </Col>
                     </Row>
                     <Row>
                         <Col>
-                            < YellowCard yellowCards={this.props.yellowCards} handleCardMove={ this.props.handleCardMove }/>
+                            < YellowCard 
+                                yellowCards={this.props.yellowCards} 
+                                handleComplete={ this.props.handleComplete }
+                            />
                         </Col>
                     </Row>
                     <Row>
                         <Col>
-                            < RedCard redCards={this.props.redCards} handleCardMove={ this.props.handleCardMove }/>
+                            < RedCard 
+                                redCards={this.props.redCards} 
+                                handleComplete={ this.props.handleComplete }
+                            />
                         </Col>
                     </Row>
 

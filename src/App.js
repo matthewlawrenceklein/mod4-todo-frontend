@@ -9,11 +9,12 @@ class App extends Component {
 
   state={
     loggedIn : true,
-    userId : 1, 
+    userId : 1, // will be current logged in user ID, not hardcored  
     allCards : [],
     greenCards : [],
     yellowCards : [],
-    redCards : []
+    redCards : [],
+    completed: []
   }
 
   getCards = () => {
@@ -21,10 +22,11 @@ class App extends Component {
       .then(resp => resp.json())
       .then(userData => {
         this.setState({
-          allCards : userData.todos, 
+          allCards : userData.todos.filter(todo => todo.completed === false), 
           greenCards :  userData.todos.filter(todo => todo.color === 'green'),
           yellowCards :  userData.todos.filter(todo => todo.color === 'yellow'),
           redCards :  userData.todos.filter(todo => todo.color === 'red'),
+          completed : userData.todos.filter(todo => todo.completed === true)
         })   
       })
    }
@@ -46,7 +48,7 @@ class App extends Component {
   }
 
   handleSubmit = (newTodo) => {
-    
+  
     const reqObj = {
       method: 'POST', 
       headers: {
@@ -63,99 +65,23 @@ class App extends Component {
         })
    }
 
-   handleCardMove = (cardData, yPosition) => {
-     console.log(cardData)
-     console.log(yPosition)
+  handleComplete = (cardData) => {
 
-      if ( cardData.color === 'green') {
-            if (yPosition > 400 && yPosition < 750){
-              const reqObj = {
-                method: 'PATCH', 
-                headers: {'Content-Type' : 'application/json'},
-                body: JSON.stringify({color : 'yellow'})
-              }
-
-              fetch(`http://localhost:4000/todos/${cardData.id}`, reqObj)
-                .then(resp => resp.json())
-                .then(respData => {
-                  this.getCards()
-                })
-            } else if (yPosition > 750 && yPosition < 1000){
-              const reqObj = {
-                method: 'PATCH', 
-                headers: {'Content-Type' : 'application/json'},
-                body: JSON.stringify({color : 'red'})
-              }
-
-              fetch(`http://localhost:4000/todos/${cardData.id}`, reqObj)
-              .then(resp => resp.json())
-              .then(respData => {
-                this.getCards()
-              })
-            } else {
-              this.getCards()
-            }
-      } else if (cardData.color === 'yellow'){
-        if (yPosition < 400 && yPosition > 100 ){
-          const reqObj = {
-            method: 'PATCH', 
-            headers: {'Content-Type' : 'application/json'},
-            body: JSON.stringify({color : 'green'})
-          }
-
-          fetch(`http://localhost:4000/todos/${cardData.id}`, reqObj)
-            .then(resp => resp.json())
-            .then(respData => {
-              this.getCards()
-            })
-        } else if (yPosition > 350 && yPosition < 700){
-          const reqObj = {
-            method: 'PATCH', 
-            headers: {'Content-Type' : 'application/json'},
-            body: JSON.stringify({color : 'red'})
-          }
-
-          fetch(`http://localhost:4000/todos/${cardData.id}`, reqObj)
-          .then(resp => resp.json())
-          .then(respData => {
-            this.getCards()
-          })
-        } else {
-          this.getCards()
-        }
-
-
-      } else if (cardData.color === 'red'){
-        if (yPosition > 450 && yPosition < 670 ){
-          const reqObj = {
-            method: 'PATCH', 
-            headers: {'Content-Type' : 'application/json'},
-            body: JSON.stringify({color : 'yellow'})
-          }
-
-          fetch(`http://localhost:4000/todos/${cardData.id}`, reqObj)
-            .then(resp => resp.json())
-            .then(respData => {
-              this.getCards()
-            })
-        } else if (yPosition > 670 && yPosition < 970){
-          const reqObj = {
-            method: 'PATCH', 
-            headers: {'Content-Type' : 'application/json'},
-            body: JSON.stringify({color : 'red'})
-          }
-
-          fetch(`http://localhost:4000/todos/${cardData.id}`, reqObj)
-          .then(resp => resp.json())
-          .then(respData => {
-            this.getCards()
-          })
-        } else {
-          this.getCards()
-        }
-      }
-
+    const reqObj = {
+      method: 'PATCH', 
+      headers: {'Content-Type' : 'application/json'}, 
+      body: JSON.stringify({ completed : true })
     }
+
+    fetch(`http://localhost:4000/todos/${cardData.id}`, reqObj)
+      .then(resp => resp.json())
+      .then(respData => {
+        this.setState({
+          allCards : this.state.allCards.filter( card => card.completed !== true),
+          completed : [...this.state.completed, cardData ]
+        })
+        })    
+  }
 
   render() {
     return (
@@ -165,11 +91,11 @@ class App extends Component {
             < NavBar handleLogOut={this.handleLogOut}/>
             < ToDoForm handleSubmit={this.handleSubmit} user={this.state.userId}/> 
             < ToDoContainer 
-                handleCardMove={this.handleCardMove}
                 allCards={this.state.allCards}
                 greenCards={this.state.greenCards}
                 yellowCards={this.state.yellowCards}
                 redCards={this.state.redCards}
+                handleComplete={this.handleComplete}
             />
           </div>
           :

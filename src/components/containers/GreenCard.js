@@ -10,7 +10,11 @@ class GreenCard extends Component {
 
     renderGreen = () => {
         return this.props.greenCards.map(card => {
-            return <ToDoCard cardData={card} handleCardMove={ this.props.handleCardMove } title={'Eventually'}/>
+            return <ToDoCard 
+                cardData={card} 
+                title={'Eventually'}
+                handleComplete={ this.props.handleComplete }  
+            />
         })
     }
  

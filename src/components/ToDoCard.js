@@ -8,21 +8,16 @@ class ToDoCard extends Component {
     //     console.log('Data: ', data.y);
     //   };
 
-    checkMovement = (data: Object) => {
-        this.props.handleCardMove(this.props.cardData, data.y)
 
-     }  
 
     render() {
         return (
-            <Draggable onStop={ this.checkMovement  }>
                 <div className='toDoCard'>
                     <h3>{this.props.title}</h3>
                     { this.props.cardData.body } 
 
-                    <button> Completed </button>
+                    <button onClick={ () => this.props.handleComplete(this.props.cardData) }> Completed </button>
                 </div>
-            </Draggable>
         );
     }
 }
