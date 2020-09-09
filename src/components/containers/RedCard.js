@@ -13,6 +13,7 @@ class RedCard extends Component {
                 cardData={card} 
                 title={'immediately'}
                 handleComplete={ this.props.handleComplete }
+                handleEdit={ this.props.handleEdit }
             />
         })
     }

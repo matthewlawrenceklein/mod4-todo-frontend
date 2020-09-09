@@ -11,7 +11,8 @@ class YellowCard extends Component {
             return <ToDoCard 
                 cardData={card} 
                 title={'Soon'}
-                handleComplete={ this.props.handleComplete }    
+                handleComplete={ this.props.handleComplete }  
+                handleEdit={ this.props.handleEdit }  
             />
         })
     }

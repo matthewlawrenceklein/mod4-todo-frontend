@@ -4,30 +4,31 @@ import ToDoForm from './components/TodoForm'
 import ToDoContainer from './components/TodoContainer'
 import LoginForm from './components/LoginForm'
 import NavBar from './components/NavBar'
+import { Switch, Route } from 'react-router-dom'
+import { connect } from 'react-redux'
+import { fetchTodosSuccess } from './actions/index'
+
+//wed goals
+    //setup routes 
+    //setup edit/delete functionality 
+    //setup analytics page with canvas.js 
+
+// thurs goals
+    // setup google auth 
+    // move other top level functions to store?
 
 class App extends Component {
 
   state={
     loggedIn : true,
     userId : 1, // will be current logged in user ID, not hardcored  
-    allCards : [],
-    greenCards : [],
-    yellowCards : [],
-    redCards : [],
-    completed: []
   }
 
   getCards = () => {
     fetch(`http://localhost:4000/users/${this.state.userId}`)
       .then(resp => resp.json())
-      .then(userData => {
-        this.setState({
-          allCards : userData.todos.filter(todo => todo.completed === false), 
-          greenCards :  userData.todos.filter(todo => todo.color === 'green'),
-          yellowCards :  userData.todos.filter(todo => todo.color === 'yellow'),
-          redCards :  userData.todos.filter(todo => todo.color === 'red'),
-          completed : userData.todos.filter(todo => todo.completed === true)
-        })   
+      .then(user => {
+        this.props.fetchTodosSuccess(user.todos)  
       })
    }
 
@@ -76,12 +77,15 @@ class App extends Component {
     fetch(`http://localhost:4000/todos/${cardData.id}`, reqObj)
       .then(resp => resp.json())
       .then(respData => {
-        this.setState({
-          allCards : this.state.allCards.filter( card => card.completed !== true),
-          completed : [...this.state.completed, cardData ]
-        })
+        this.getCards()
         })    
   }
+  
+  handleEdit = (cardData) => {
+    console.log(cardData)
+
+  }
+
 
   render() {
     return (
@@ -91,11 +95,8 @@ class App extends Component {
             < NavBar handleLogOut={this.handleLogOut}/>
             < ToDoForm handleSubmit={this.handleSubmit} user={this.state.userId}/> 
             < ToDoContainer 
-                allCards={this.state.allCards}
-                greenCards={this.state.greenCards}
-                yellowCards={this.state.yellowCards}
-                redCards={this.state.redCards}
                 handleComplete={this.handleComplete}
+                handleEdit={this.handleEdit}
             />
           </div>
           :
@@ -106,8 +107,22 @@ class App extends Component {
   }
 }
 
-export default App;
+const mapStateToProps = (state) => {
+  return {
+    todos: state.todos,
+  }
+}
+
+const mapDispatchToProps = {
+  fetchTodosSuccess
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App)
 
 
-// App has top level ternary that renders login or homepage 
-// logged-in view --- app children of 3x TODO Container (red, yellow, green) AND new TODO form 
+
+{/* <Switch>
+<Route path='/dash' component={TodoContainer}/>
+<Route path='/new' component={TodoForm}/>
+<Route path='/edit' component={TodoForm}/>
+</Switch> */}

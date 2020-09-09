@@ -9,11 +9,12 @@ class GreenCard extends Component {
 
 
     renderGreen = () => {
-        return this.props.greenCards.map(card => {
+        return this.props.greenCards.map((card) => {
             return <ToDoCard 
                 cardData={card} 
                 title={'Eventually'}
                 handleComplete={ this.props.handleComplete }  
+                handleEdit={ this.props.handleEdit }
             />
         })
     }
