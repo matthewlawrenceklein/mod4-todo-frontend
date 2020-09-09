@@ -32,7 +32,7 @@ class Data extends React.Component {
                     label: 'Your Productivity',
                     fill: false,
                     lineTension: 0.5,
-                    backgroundColor: ['#7FFFD4', '#FFEC8B', '	#FFB6C1' ] ,
+                    backgroundColor: ['#7FFFD4', '#FFEC8B', '#FFB6C5' ] ,
                     borderColor: 'rgba(0,0,0,1)',
                     borderWidth: 2,
                     data: [
@@ -47,7 +47,6 @@ class Data extends React.Component {
     
 
   render() {
-      console.log(this.props.todos.length)
     return (
       <div>
         <Doughnut

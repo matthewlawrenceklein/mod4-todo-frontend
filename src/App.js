@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import ToDoForm from './components/TodoForm'
+import EditForm from './components/EditForm'
 import Data from './components/Data'
 import ToDoContainer from './components/TodoContainer'
 import LoginForm from './components/LoginForm'
@@ -60,9 +61,9 @@ class App extends Component {
             <ToDoForm />
           </Route>
 
-          <Route path='/edit'>
-            <ToDoForm/>
-          </Route>
+          <Route path='/edit/:id' render={(props) => {
+                return ( <EditForm {...props } /> )
+          }} />
 
           <Route path='/data'>
             <Data />

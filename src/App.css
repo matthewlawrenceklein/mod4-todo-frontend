@@ -37,6 +37,7 @@
 
 .navBar {
   text-align: center;
+  padding-top: 20px;
 }
 
 .icon {
@@ -47,4 +48,14 @@
 
 .login {
   text-align: center;
+}
+
+.form-item{
+  padding: 8px;
+  margin: 8px;
+  border-radius: 10px;
+}
+
+.icon:hover {
+  color: blue;
 }

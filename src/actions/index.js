@@ -25,3 +25,10 @@ export const submitTodo = (todo) => {
     todo: todo
   }
 }
+
+export const editTodo = (todo) => {
+  return {
+    type: 'EDIT_TODO',
+    todo: todo
+  }
+}

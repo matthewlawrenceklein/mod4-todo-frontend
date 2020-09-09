@@ -12,7 +12,7 @@ class TodoForm extends Component {
         color: 'green',
         completed: false, 
         user_id: 1,
-        start_date: new Date,
+        start_date: new Date(),
         redirect: false,
     }
 

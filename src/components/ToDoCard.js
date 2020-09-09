@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { deleteTodo } from '../actions/index'
 import { completeTodo } from '../actions/index'
 import { Pencil } from 'react-bootstrap-icons';
+import { Check2Circle } from 'react-bootstrap-icons';
 import { Link } from 'react-router-dom'
 import '../App.css';
 
@@ -10,18 +11,6 @@ import '../App.css';
 
 
 class ToDoCard extends Component {
-
-    destroyTodo = (id) => {
-      const reqObj = {
-        method: 'DELETE'
-      }
-
-      fetch(`http://localhost:4000/todos/${id}`, reqObj)
-        .then(resp => resp.json())
-        .then(respData => {
-         this.props.deleteTodo(id)
-      })
-    }
 
     handleComplete = (id) => {
 
@@ -52,9 +41,11 @@ class ToDoCard extends Component {
                     {/* <button onClick={ () => this.props.handleEdit(this.props.cardData)}> Edit Card</button>
                     <button onClick={ () => this.handleComplete(this.props.cardData.id) }> Completed </button>
                     <button onClick={ () => this.destroyTodo(this.props.cardData.id) }> DELETE TEST</button> */}
-                    <Link to='/edit' className='icon'>
+                    <Check2Circle className='icon' onClick={ () => this.handleComplete(this.props.cardData.id) }/>
+                    <Link to={`/edit/${this.props.cardData.id}`} className='icon'>
                         <Pencil />
                     </Link>
+
 
                 </div>
         );
