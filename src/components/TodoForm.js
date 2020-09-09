@@ -12,7 +12,8 @@ class TodoForm extends Component {
         color: 'green',
         completed: false, 
         user_id: 1,
-        redirect: false
+        start_date: new Date,
+        redirect: false,
     }
 
     handleBody = (event) => {
@@ -45,7 +46,7 @@ class TodoForm extends Component {
             this.setState({
                 body : '',
                 color: 'green',
-                redirect: true, 
+                redirect: true,  
             })
             })
        }

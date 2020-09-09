@@ -39,9 +39,15 @@ class ToDoCard extends Component {
     }
 
     render() {
+
+        const startDate = Date.parse(this.props.cardData.start_date)
+        const daysPassed = Math.floor((new Date() - startDate)/(24*60*60*1000))
+
+        console.log((daysPassed))
         return (
                 <div className='toDoCard'>
-                    <h3>{this.props.title}</h3>
+                    <h5>{this.props.title}</h5>
+                    <h6>Age: {daysPassed} days</h6>
                     { this.props.cardData.body } 
                     <br></br>
                     {/* <button onClick={ () => this.props.handleEdit(this.props.cardData)}> Edit Card</button>
