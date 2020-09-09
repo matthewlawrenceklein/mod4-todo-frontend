@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { submitTodo } from '../actions/index'
 import { Redirect } from 'react-router-dom'
+import { ArrowRightCircle } from 'react-bootstrap-icons';
+
 
 
 
@@ -60,15 +62,14 @@ class TodoForm extends Component {
         return (
             <div className="toDoForm">
                 <h1>Add ToDo</h1>
-                <input type='textarea'rows="4" cols="50" placeholder="add ToDo" onChange={this.handleBody}></input>
+                <input className='form-item' type='textarea'rows="4" cols="50" placeholder="add ToDo" onChange={this.handleBody}></input>
 
-                <select onChange={this.handleColor}>
+                <select onChange={this.handleColor} className='form-item' >
                     <option value="green">Green</option>
                     <option value="yellow">Yellow</option>
                     <option value="red">Red</option>
                 </select>
-
-                <button onClick={ this.handleNew }> Create ToDo</button>
+                <ArrowRightCircle onClick={ this.handleNew } className='icon' />
             </div>
         );
     }

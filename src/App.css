@@ -22,6 +22,11 @@
 
 .toDoForm {
   text-align: center;
+  padding-top: 150px;
+  border-width: 2px;
+  border-color: black;
+  
+  
 }
 
 .toDoCard {
