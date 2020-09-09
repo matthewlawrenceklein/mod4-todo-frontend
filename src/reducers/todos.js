@@ -1,5 +1,5 @@
-const initialState = []
 
+const initialState = []
 
 export default function todos(state = initialState, action) {
   switch (action.type) {
@@ -15,7 +15,6 @@ export default function todos(state = initialState, action) {
     case 'SUBMIT_TODO':
           const todos = [...state, action.todo]
           return todos 
-  
     default:
       return state
   }

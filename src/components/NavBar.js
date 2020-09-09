@@ -14,7 +14,7 @@ class NavBar extends Component {
             <div className='navBar'>
 
                 <Link to='/dash'>
-                    <h1> TO DO APP FOR THE PEOPLE</h1>
+                    <h1> Taskbot Jr</h1>
                 </Link>
 
                 <Link to='/new'> 

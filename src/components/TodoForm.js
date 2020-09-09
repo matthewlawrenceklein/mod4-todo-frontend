@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { submitTodo } from '../actions/index'
+import { Redirect } from 'react-router-dom'
+
 
 
 class TodoForm extends Component {
@@ -9,7 +11,8 @@ class TodoForm extends Component {
         body: '',
         color: 'green',
         completed: false, 
-        user_id: this.props.user
+        user_id: 1,
+        redirect: false
     }
 
     handleBody = (event) => {
@@ -41,12 +44,18 @@ class TodoForm extends Component {
             this.props.submitTodo(respData)
             this.setState({
                 body : '',
-                color: 'green'
+                color: 'green',
+                redirect: true, 
             })
             })
        }
 
     render() {
+
+        if (this.state.redirect) {
+            return <Redirect to="/dash" />
+        }
+
         return (
             <div className="toDoForm">
                 <h1>Add ToDo</h1>

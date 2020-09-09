@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import ToDoForm from './components/TodoForm'
+import Data from './components/Data'
 import ToDoContainer from './components/TodoContainer'
 import LoginForm from './components/LoginForm'
 import NavBar from './components/NavBar'
@@ -10,14 +11,13 @@ import { fetchTodosSuccess } from './actions/index'
 
 //wed goals
     //setup routes 
-    //setup edit/delete functionality 
-    //setup analytics page with canvas.js 
 
 // thurs goals
     // setup google auth 
 
 class App extends Component {
 
+  
   state={
     loggedIn : true,
     userId : 1, // will be current logged in user ID, not hardcored  
@@ -61,11 +61,11 @@ class App extends Component {
           </Route>
 
           <Route path='/edit'>
-            <ToDoForm />
+            <ToDoForm/>
           </Route>
 
-          <Route path='data'>
-
+          <Route path='/data'>
+            <Data />
           </Route>
 
 
