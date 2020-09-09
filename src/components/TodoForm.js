@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux'
+import { submitTodo } from '../actions/index'
+
 
 class TodoForm extends Component {
 
@@ -21,15 +24,27 @@ class TodoForm extends Component {
         })
     }
 
-    submitAndClear = () => {
-    this.props.handleSubmit(this.state)
+    handleNew = () => {
+  
+        const reqObj = {
+          method: 'POST', 
+          headers: {
+            "Content-Type" : "application/json",
+            "Access-Control-Allow-Origin" : "*"
+          },
+          body: JSON.stringify(this.state)
+        }
     
-    this.setState({
-        body : '',
-        color: 'green'
-    })
-        
-    }
+        fetch(`http://localhost:4000/todos`, reqObj)
+          .then(resp => resp.json())
+          .then(respData => {
+            this.props.submitTodo(respData)
+            this.setState({
+                body : '',
+                color: 'green'
+            })
+            })
+       }
 
     render() {
         return (
@@ -43,10 +58,15 @@ class TodoForm extends Component {
                     <option value="red">Red</option>
                 </select>
 
-                <button onClick={ this.submitAndClear }> Create ToDo</button>
+                <button onClick={ this.handleNew }> Create ToDo</button>
             </div>
         );
     }
 }
 
-export default TodoForm;
+const mapDispatchToProps = {
+    submitTodo
+}
+
+
+export default connect(null, mapDispatchToProps)(TodoForm)

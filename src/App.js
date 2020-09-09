@@ -15,7 +15,6 @@ import { fetchTodosSuccess } from './actions/index'
 
 // thurs goals
     // setup google auth 
-    // move other top level functions to store?
 
 class App extends Component {
 
@@ -48,60 +47,30 @@ class App extends Component {
     })
   }
 
-  handleSubmit = (newTodo) => {
-  
-    const reqObj = {
-      method: 'POST', 
-      headers: {
-        "Content-Type" : "application/json",
-        "Access-Control-Allow-Origin" : "*"
-      },
-      body: JSON.stringify(newTodo)
-    }
-
-    fetch(`http://localhost:4000/todos`, reqObj)
-      .then(resp => resp.json())
-      .then(respData => {
-        this.getCards()
-        })
-   }
-
-  handleComplete = (cardData) => {
-
-    const reqObj = {
-      method: 'PATCH', 
-      headers: {'Content-Type' : 'application/json'}, 
-      body: JSON.stringify({ completed : true })
-    }
-
-    fetch(`http://localhost:4000/todos/${cardData.id}`, reqObj)
-      .then(resp => resp.json())
-      .then(respData => {
-        this.getCards()
-        })    
-  }
-  
-  handleEdit = (cardData) => {
-    console.log(cardData)
-
-  }
-
-
   render() {
     return (
       <div>
-        { this.state.loggedIn ? 
-          <div>
-            < NavBar handleLogOut={this.handleLogOut}/>
-            < ToDoForm handleSubmit={this.handleSubmit} user={this.state.userId}/> 
-            < ToDoContainer 
-                handleComplete={this.handleComplete}
-                handleEdit={this.handleEdit}
-            />
-          </div>
-          :
-          < LoginForm handleLogin={this.handleLogin}/>
-        }
+        <NavBar />
+        <Switch>
+          <Route path='/dash'>
+            <ToDoContainer />
+          </Route>
+
+          <Route path='/new'>
+            <ToDoForm />
+          </Route>
+
+          <Route path='/edit'>
+            <ToDoForm />
+          </Route>
+
+          <Route path='data'>
+
+          </Route>
+
+
+        </Switch>
+        
       </div>
     );
   }
@@ -121,8 +90,17 @@ export default connect(mapStateToProps, mapDispatchToProps)(App)
 
 
 
-{/* <Switch>
-<Route path='/dash' component={TodoContainer}/>
-<Route path='/new' component={TodoForm}/>
-<Route path='/edit' component={TodoForm}/>
-</Switch> */}
+
+
+// { this.state.loggedIn ? 
+//   <div>
+//     < NavBar handleLogOut={this.handleLogOut}/>
+//     < ToDoForm handleSubmit={this.handleSubmit} user={this.state.userId}/> 
+//     < ToDoContainer 
+//         handleComplete={this.handleComplete}
+//         handleEdit={this.handleEdit}
+//     />
+//   </div>
+//   :
+//   < LoginForm handleLogin={this.handleLogin}/>
+// }

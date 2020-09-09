@@ -11,7 +11,7 @@ class RedCard extends Component {
         return this.props.redCards.map(card => {
             return <ToDoCard 
                 cardData={card} 
-                title={'immediately'}
+                title={'Priority'}
                 handleComplete={ this.props.handleComplete }
                 handleEdit={ this.props.handleEdit }
             />
