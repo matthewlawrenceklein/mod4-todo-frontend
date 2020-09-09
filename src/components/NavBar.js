@@ -14,8 +14,9 @@ class NavBar extends Component {
             <div className='navBar'>
 
                 <Link to='/dash'>
-                    <h1> Taskbot Jr</h1>
+                    <img src='https://img.icons8.com/wired/128/000000/broken-robot.png' alt="nice robot"/> <br></br>
                 </Link>
+                    <h4>welcome to taskbot jr</h4>
 
                 <Link to='/new'> 
                     < PlusCircle className='icon'/> 
