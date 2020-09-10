@@ -17,9 +17,9 @@ class Data extends React.Component {
                 borderColor: 'rgba(0,0,0,1)',
                 borderWidth: 2,
                 data: [
-                    this.props.todos.filter(todo => todo.color === 'green' && todo.completed === false).length,
-                    this.props.todos.filter(todo => todo.color === 'yellow' && todo.completed === false).length, 
-                    this.props.todos.filter(todo => todo.color === 'red' && todo.completed === false).length]
+                    this.props.todos.filter(todo => todo.color === 'green' && todo.completed === true).length,
+                    this.props.todos.filter(todo => todo.color === 'yellow' && todo.completed === true).length, 
+                    this.props.todos.filter(todo => todo.color === 'red' && todo.completed === true).length]
                 }
             ]
         }
@@ -36,9 +36,9 @@ class Data extends React.Component {
                     borderColor: 'rgba(0,0,0,1)',
                     borderWidth: 2,
                     data: [
-                        this.props.todos.filter(todo => todo.color === 'green' && todo.completed === false).length,
-                        this.props.todos.filter(todo => todo.color === 'yellow' && todo.completed === false).length, 
-                        this.props.todos.filter(todo => todo.color === 'red' && todo.completed === false).length]
+                        this.props.todos.filter(todo => todo.color === 'green' && todo.completed === true).length,
+                        this.props.todos.filter(todo => todo.color === 'yellow' && todo.completed === true).length, 
+                        this.props.todos.filter(todo => todo.color === 'red' && todo.completed === true).length]
                     }]
             })
         }
@@ -47,6 +47,7 @@ class Data extends React.Component {
     
 
   render() {
+    console.log(this.props.todos)
     return (
       <div>
         <Doughnut

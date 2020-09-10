@@ -12,6 +12,8 @@ export default function todos(state = initialState, action) {
     case 'COMPLETE_TODO':
           const newTodos = state.filter(t => t.id !== action.id)
           return newTodos
+      //     const newTodos = state
+      //     return newTodos 
     case 'SUBMIT_TODO':
           const todos = [...state, action.todo]
           return todos 

@@ -6,6 +6,7 @@ import Data from './components/Data'
 import ToDoContainer from './components/TodoContainer'
 import LoginForm from './components/LoginForm'
 import NavBar from './components/NavBar'
+import About from './components/About'
 import { Switch, Route } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { fetchTodosSuccess } from './actions/index'
@@ -38,6 +39,11 @@ class App extends Component {
 
           <Route exact path='/'>
               <LoginForm/>
+          </Route>
+
+          <Route>
+            <NavBar />
+            <About />
           </Route>
 
 

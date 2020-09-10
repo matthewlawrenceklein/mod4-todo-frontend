@@ -4,11 +4,7 @@ import { submitTodo } from '../actions/index'
 import { Redirect } from 'react-router-dom'
 import { ArrowRightCircle } from 'react-bootstrap-icons';
 
-
-
-
 class TodoForm extends Component {
-
     state={
         body: '',
         color: 'green',
@@ -37,7 +33,6 @@ class TodoForm extends Component {
             user_id: this.props.userId,
             start_date: new Date(),
             redirect: false,
-
         }
   
         const reqObj = {

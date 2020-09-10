@@ -17,7 +17,11 @@ class ToDoCard extends Component {
         const reqObj = {
           method: 'PATCH', 
           headers: {'Content-Type' : 'application/json'}, 
-          body: JSON.stringify({ completed : true })
+          body: JSON.stringify({ 
+            completed : true ,
+            body: this.props.cardData.body,
+            color: this.props.cardData.color
+          })
         }
     
         fetch(`http://localhost:4000/todos/${id}`, reqObj)
