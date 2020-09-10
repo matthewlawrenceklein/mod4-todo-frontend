@@ -6,10 +6,8 @@ import { ClipboardData } from 'react-bootstrap-icons';
 import { DoorClosed } from 'react-bootstrap-icons';
 import { QuestionCircle } from 'react-bootstrap-icons';
 import { setUser } from '../actions/index'
-import { GoogleLogout } from 'react-google-login';
 import '../App.css';
-import Modal from 'react-bootstrap/Button';
-import Button from 'react-bootstrap/Button';
+
 
 
 class NavBar extends Component {

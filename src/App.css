@@ -86,3 +86,24 @@
 .help-text{
   padding-top: 50px;
 }
+
+.footer{
+  text-align: center;
+  padding-top: 14px;
+}
+
+.footer-icon{
+  font-size: 20px;
+  margin: 5px;
+  color: black;
+}
+
+.footer-icon:hover{
+  color:blue 
+}
+
+.footer-icon-plain{
+  font-size: 20px;
+  margin: 5px;
+  color: black;
+}
