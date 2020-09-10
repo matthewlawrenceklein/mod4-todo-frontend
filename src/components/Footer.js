@@ -9,7 +9,7 @@ class Footer extends Component {
     render() {
         return (
             <div className='footer'>
-                <p>made with < EmojiFrown className='footer-icon-plain'/> by matthew    
+                <p>made with < EmojiFrown className='footer-icon-plain'/> by matthew + marshall + gamecube    
                 
                     <a href="http://github.com/matthewlawrenceklein"> 
                         <FontAwesomeIcon className='footer-icon' icon={faCodeBranch} />
