@@ -10,63 +10,34 @@ import { Switch, Route } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { fetchTodosSuccess } from './actions/index'
 
-//wed goals
-    //setup routes 
-
-// thurs goals
-    // setup google auth 
-
 class App extends Component {
-
-  
-  state={
-    loggedIn : true,
-    userId : 1, // will be current logged in user ID, not hardcored  
-  }
-
-  getCards = () => {
-    fetch(`http://localhost:4000/users/${this.state.userId}`)
-      .then(resp => resp.json())
-      .then(user => {
-        this.props.fetchTodosSuccess(user.todos)  
-      })
-   }
-
-   componentDidMount(){
-     this.getCards()
-   }
-
-  handleLogOut = () => {
-    this.setState({
-      loggedIn : false 
-    })
-  }
-
-  handleLogin = () => {
-    this.setState({
-      loggedIn : true 
-    })
-  }
 
   render() {
     return (
       <div>
-        <NavBar />
         <Switch>
           <Route path='/dash'>
+            <NavBar />
             <ToDoContainer />
           </Route>
 
           <Route path='/new'>
+            <NavBar />
             <ToDoForm />
           </Route>
 
           <Route path='/edit/:id' render={(props) => {
-                return ( <EditForm {...props } /> )
+                return ( 
+                <EditForm {...props } /> )
           }} />
 
           <Route path='/data'>
+            <NavBar />
             <Data />
+          </Route>
+
+          <Route exact path='/'>
+              <LoginForm/>
           </Route>
 
 
@@ -80,6 +51,7 @@ class App extends Component {
 const mapStateToProps = (state) => {
   return {
     todos: state.todos,
+    userId: state.userId 
   }
 }
 

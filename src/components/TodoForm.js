@@ -13,7 +13,6 @@ class TodoForm extends Component {
         body: '',
         color: 'green',
         completed: false, 
-        user_id: 1,
         start_date: new Date(),
         redirect: false,
     }
@@ -31,6 +30,15 @@ class TodoForm extends Component {
     }
 
     handleNew = () => {
+        const todoObj = {
+            body: this.state.body,
+            color: this.state.color,
+            completed: false, 
+            user_id: this.props.userId,
+            start_date: new Date(),
+            redirect: false,
+
+        }
   
         const reqObj = {
           method: 'POST', 
@@ -38,7 +46,7 @@ class TodoForm extends Component {
             "Content-Type" : "application/json",
             "Access-Control-Allow-Origin" : "*"
           },
-          body: JSON.stringify(this.state)
+          body: JSON.stringify(todoObj)
         }
     
         fetch(`http://localhost:4000/todos`, reqObj)
@@ -79,5 +87,13 @@ const mapDispatchToProps = {
     submitTodo
 }
 
+const mapStateToProps = (state) => {
+    return {
+        todos: state.todos,
+        userId: state.userId 
+    }
+}
 
-export default connect(null, mapDispatchToProps)(TodoForm)
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(TodoForm)

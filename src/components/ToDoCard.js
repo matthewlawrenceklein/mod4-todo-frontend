@@ -30,7 +30,7 @@ class ToDoCard extends Component {
     render() {
 
         const startDate = Date.parse(this.props.cardData.start_date)
-        const daysPassed = Math.floor((new Date() - startDate)/(24*60*60*1000))
+        const daysPassed = Math.ceil((new Date() - startDate)/(24*60*60*1000))
 
         return (
                 <div className='toDoCard'>

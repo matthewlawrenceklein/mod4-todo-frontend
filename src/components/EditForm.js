@@ -97,7 +97,7 @@ class EditForm extends Component {
 
                 {/* <button onClick={ this.handleEdit } className='form-item'> Edit ToDo</button>  */}
                 <ArrowRightCircle className='icon' onClick={ this.handleEdit }/>
-                <Trash className='icon' onClick={ this.destroyTodo }/>
+                <Trash className='icon-trash' onClick={ this.destroyTodo }/>
             </div>
         );
     }

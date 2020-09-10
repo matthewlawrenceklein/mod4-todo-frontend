@@ -4,7 +4,7 @@ export const fetchTodosSuccess = (todos) => {
       todos: todos
   }    
 }
-  
+
 export const deleteTodo = (id) => {
   return {
     type: 'DELETE_TODO',
@@ -31,4 +31,11 @@ export const editTodo = (todo) => {
     type: 'EDIT_TODO',
     todo: todo
   }
+}
+
+export const setUser = (id) => {
+    return {
+      type: 'SET_USER',
+      userId : id 
+    }
 }

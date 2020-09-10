@@ -51,8 +51,18 @@
   color: black;
 }
 
+.icon-trash {
+  font-size: 30px;
+  margin: 15px;
+  color: black;
+}
+
 .login {
   text-align: center;
+}
+
+.login-button{
+  margin: 150px;
 }
 
 .form-item{
@@ -63,4 +73,12 @@
 
 .icon:hover {
   color: blue;
+}
+
+.icon-trash:hover {
+  color: red;
+}
+
+#robot-header{
+  margin: 30px;
 }
