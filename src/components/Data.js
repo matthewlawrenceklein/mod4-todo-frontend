@@ -7,7 +7,7 @@ class Data extends React.Component {
     constructor(props){
         super(props)
         this.state = {
-            labels: ['Early', 'Timely', 'Danger'],
+            labels: ['Early', 'Timely', 'Dangerly'],
             datasets: [
                 {
                 label: 'Your Productivity',
